@@ -16,13 +16,16 @@ The Static Thrust ($C_T$) and Power ($C_P$) coefficients are extracted at an Adv
 | **0.9** | 0.1585 | 0.0866 | 75.1% | 404 test points |
 | **1.0** | 0.1383 | 0.0771 | 77.7% | 440 test points |
 
-### Key Observations for Digital Twin Solvers:
-1. **The H/D = 0.5 to 0.6 Sweet Spot:** This is the most common range for sport RC aircraft. A highly reliable baseline fallback for an unknown APC-E propeller in this range is **$C_T \approx 0.113$** and **$C_P \approx 0.045$**.
-2. **Static Stall:** At very high pitch ratios ($H/D \ge 1.0$), the static thrust and power coefficients begin to *drop*. This proves that "square" propellers (like a 10x10) experience blade stall at zero forward airspeed, despite being highly efficient (77.7%) once in fast forward flight.
-3. **Efficiency Curve:** Peak flight efficiency scales aggressively with Pitch/Diameter ratio. Low-pitch propellers waste significant energy regardless of flight speed.
-4. **Power Scales by $D^5$ (The ESC Fire Rule):** Because aerodynamic power math relies on Diameter to the fifth power ($D^5$), increasing your propeller diameter by just 10% (e.g., swapping a 10x5 for an 11x5) will increase your motor's current draw by roughly **61%**! Always re-check your ESC/Motor limits when stepping up diameter. Thrust, by comparison, only scales by $D^4$.
-5. **RPM Limits (APC-E vs APC-SF):** Do not mix up Slow Flyer and Thin Electric props in your database logic. APC explicitly limits Slow Flyer (SF) props to a maximum safe RPM of `65,000 / Diameter (in)`. Thin Electric (E) props are much stiffer and can safely spin up to `145,000 / Diameter (in)`.
-6. **The Pitch Speed Match:** To hit the Peak Efficiency ($\eta_{max}$) listed in the table above, the aircraft's forward flight speed must be carefully matched to the propeller's pitch speed. As a rule of thumb, **Pitch Speed ($V_{pitch}$) should be roughly 1.4x the target flight speed**.
+### Design Guidelines & Physical Constraints
+
+*   **Default Coefficients:** For standard sport/glider setups ($H/D = 0.5$ to $0.6$), baseline fallback values are $C_T \approx 0.113$ and $C_P \approx 0.045$.
+*   **Static Blade Stall:** Propellers with $H/D \ge 1.0$ exhibit reduced static thrust and power coefficients due to zero-airspeed stall, despite having higher peak flight efficiency.
+*   **Efficiency vs. Pitch:** Peak aerodynamic efficiency ($\eta_{max}$) scales directly with the Pitch/Diameter ratio.
+*   **Power Scaling ($D^5$):** Mechanical power and electrical current scale to the 5th power of diameter. A 10% increase in diameter yields a ~61% increase in current draw. Thrust scales to $D^4$.
+*   **RPM Structural Limits:** 
+    *   APC Slow Flyer (SF): $RPM_{max} = 65,000 / D_{inches}$
+    *   APC Thin Electric (E): $RPM_{max} = 145,000 / D_{inches}$
+*   **Optimal Advance Ratio:** Peak efficiency is achieved when the propeller's Pitch Speed ($V_{pitch}$) is approximately $1.4\times$ the aircraft's steady-state flight speed.
 
 ---
 
