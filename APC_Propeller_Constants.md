@@ -30,14 +30,10 @@ The Static Thrust ($C_T$) and Power ($C_P$) coefficients are extracted at an Adv
 When you build your solver in Python, remember to convert RPM to RPS ($n$) and inches to meters ($D$) before calculating Thrust and Power.
 
 **Thrust Equation (Newtons):**
-$$
-T = C_T \cdot \rho \cdot n^2 \cdot D^4
-$$
+`T = Ct * rho * n^2 * D^4`
 
 **Power Equation (Watts):**
-$$
-P = C_P \cdot \rho \cdot n^3 \cdot D^5
-$$
+`P = Cp * rho * n^3 * D^5`
 
 *Where:*
 *   **$T$** = Thrust in Newtons ($N$)
